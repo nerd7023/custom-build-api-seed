@@ -15,7 +15,7 @@ class ValidationError(ValueError):
     pass
 
 
-class Student(db.Model):
+class fallout(db.Model):
     __tablename__ = 'students'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
