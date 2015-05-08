@@ -1,7 +1,10 @@
+# Patrick Galoostian's api.py for Fallout subreddit
+
 import os
 from flask import Flask, url_for, jsonify, request, render_template
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(basedir, '../data.sqlite')
@@ -103,9 +106,15 @@ def not_found(e):
 
 @app.route('/')
 def index():
+   highlight = {'min': 1, 'max': 2}
+   falloutTemp = fallout.query.all()
+   return render_template('index.html', falloutTemp=falloutTemp, highlight=highlight)
+
+@app.route('/fallout/mostCommented/')
+def mostCommented():
     highlight = {'min': 1, 'max': 2}
-    falloutTemp = fallout.query.all()
-    return render_template('index.html', falloutTemp=falloutTemp, highlight=highlight)
+    falloutTemp = fallout.query.order_by(fallout.num_comments.desc())
+    return render_template('index.html', falloutTemp = falloutTemp, highlight=highlight)
 
 if __name__ == '__main__':
     db.create_all()

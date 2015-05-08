@@ -1,0 +1,84 @@
+<BODY BACKGROUND="https://d.thumbs.redditmedia.com/ioS7DmIBk7KxyhP9.png">
+<!-- This is for the wallpaper ^^^^^^^ -->
+
+{% extends 'bootstrap/base.html' %}
+{% block title %}List of Fallout posts from reddit.com/r/Fallout{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&spfreload=10">Click Here for Fallout 4 New Leaked Trailer!!!</a>
+            
+            <a href="/fallout/mostCommented/" class="btn"> Sort by Most Commented</a>
+            <a href="/fallout/ups/" class="btn"> Sort Highest score</a>
+            <a href="/fallout/downs/" class="btn"> Sort Lowest Score</a>
+            
+        </div>
+    </nav>
+{% endblock %}
+
+
+
+
+{% block content %}
+    <div class="container">
+        <h1>Fallout Info</h1>
+        <table class="table table-hover">
+    <tr>
+        <th>TimeCreated</th>
+        <th></th>
+        <th>Ups</th>
+        <th></th>
+        <th>Downs</th>
+        <th></th>
+        <th>Score</th>
+        <th></th>
+        <th>Comments</th>
+        <th></th>
+        <th>Title</th>
+        <th></th>
+        <th>Author</th>
+        <th></th>
+        <th>Link to Post on Reddit</th>
+        <th></th>
+        <th>ThumbnailImg Link</th>
+        <th></th>
+        <th>Domain</th
+        <th></th>
+        <th>Url</th>
+        
+    </tr>
+    {% for falloutLoop in falloutTemp %}
+    <tr>
+        <td>
+            {% set hl = falloutLoop.id <= highlight['min'] %}
+            {% if hl %}<b>{% endif %}
+            {{ falloutLoop.created_utc }}
+            {% if hl %}</b>{% endif %}
+        </td>
+        <td></td>
+        <td>{{ falloutLoop.ups }}</td>
+        <td></td>
+        <td>{{ falloutLoop.downs }}</td>
+        <td></td>
+        <td>{{ falloutLoop.score }}</td>
+        <td></td>
+        <td>{{ falloutLoop.num_comments }}</td>
+        <td></td>
+        <td>{{ falloutLoop.title }}</td>
+        <td></td>
+        <td>{{ falloutLoop.author }}</td>
+        <td></td>
+        <td>{{ falloutLoop.permalink }}</td>
+        <td></td>
+        <td>{{ falloutLoop.thumbnail }}</td>
+        <td></td>
+        <td>{{ falloutLoop.domain }}</td>
+        <td></td>
+        <td>{{ falloutLoop.url }}</td>
+        <td></td>
+            </tr>
+    {% endfor %}
+        </table>
+    </div>
+{% endblock %}
